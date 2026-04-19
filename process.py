@@ -33,7 +33,7 @@ def get_levelups(df: pd.DataFrame, current: bool) -> list[dict]:
     thresholds = CURRENT_MONTH_THRESHOLDS if current else LAST_MONTH_THRESHOLDS
     results = []
     for _, row in df.iterrows():
-        months = float(row[ENROLLMENT_COL_MONTHS])
+        months = float(str(row[ENROLLMENT_COL_MONTHS]).replace(" months", "").strip())
         if int(months) in thresholds:
             new_level = calculate_level(months)
             name = f"{row[ENROLLMENT_COL_FIRST]} {row[ENROLLMENT_COL_LAST]}"
