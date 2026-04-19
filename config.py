@@ -21,12 +21,14 @@ CENTERS = {
 CC_RECIPIENT = "matt.diamond@mathnasium.com"
 
 # ── Column names ──────────────────────────────────────────────────────────────
-# These must be verified against real Radius export files in later tasks.
-# Update here if the actual column names differ.
-ENROLLMENT_COL_STUDENT = "Student Name"
-ENROLLMENT_COL_MONTHS  = "Length of Stay"
+# Enrollment Report columns (verified against real Radius export)
+ENROLLMENT_COL_FIRST   = "Student First Name"
+ENROLLMENT_COL_LAST    = "Student Last Name"
+ENROLLMENT_COL_MONTHS  = "StudentLengthof Stay"
 ENROLLMENT_COL_CENTER  = "Center"
 
-BIRTHDAY_COL_STUDENT   = "Student Name"
+# Birthday Report columns (verified against real Radius export)
+BIRTHDAY_COL_FIRST     = "Student First Name"
+BIRTHDAY_COL_LAST      = "Last Name"
 BIRTHDAY_COL_BIRTHDAY  = "Birthday"
 BIRTHDAY_COL_CENTER    = "Center"
