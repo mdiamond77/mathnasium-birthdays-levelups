@@ -5,8 +5,7 @@ BASE_DIR = Path(__file__).parent
 INPUT_DIR = BASE_DIR / "input"
 
 # ── Radius ────────────────────────────────────────────────────────────────────
-# Verify this URL against ~/mathnasium-page-goals/download.py
-RADIUS_LOGIN_URL = "https://go.mathnasium.com/"
+RADIUS_LOGIN_URL = "https://radius.mathnasium.com"
 
 CENTERS = {
     "Englewood": {
