@@ -15,7 +15,8 @@ def read_log() -> list:
 def write_log(month: str, success: bool, error: str = "") -> None:
     log = read_log()
     log.append({
-        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "timestamp": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "trigger": "auto",
         "month": month,
         "success": success,
         "error": error,
