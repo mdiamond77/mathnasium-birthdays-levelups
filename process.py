@@ -11,6 +11,7 @@ from config import (
     BIRTHDAY_COL_LAST,
     BIRTHDAY_COL_BIRTHDAY,
     BIRTHDAY_COL_CENTER,
+    CENTERS,
 )
 
 CURRENT_MONTH_THRESHOLDS = {12, 24, 36, 48}
@@ -58,7 +59,7 @@ def get_birthdays(df: pd.DataFrame, month: int) -> list[dict]:
             name = f"{row[BIRTHDAY_COL_FIRST]} {row[BIRTHDAY_COL_LAST]}"
             results.append({
                 "name": name,
-                "birthday": bday.strftime("%b %-d"),
+                "birthday": "{} {}".format(bday.strftime("%b"), bday.day),
                 "age": age,
                 "_day": bday.day,
             })
@@ -85,11 +86,23 @@ def process(enrollment_path, birthdays_path, month: int) -> dict:
     enrollment_df = pd.read_excel(enrollment_path)
     birthdays_df = pd.read_excel(birthdays_path)
 
+    if enrollment_df.empty:
+        raise ValueError("Enrollment report is empty — check Radius filters and re-run.")
+    if birthdays_df.empty:
+        raise ValueError("Birthday report is empty — check Radius filters and re-run.")
+
     enrollment_by_center = split_by_center(enrollment_df, ENROLLMENT_COL_CENTER)
     birthdays_by_center = split_by_center(birthdays_df, BIRTHDAY_COL_CENTER)
 
+    for center_name in CENTERS:
+        if center_name not in enrollment_by_center:
+            raise ValueError(
+                "Center '{}' missing from enrollment report. "
+                "Check that both centers were selected before export.".format(center_name)
+            )
+
     result = {}
-    for center_name in enrollment_by_center:
+    for center_name in CENTERS:
         enroll = enrollment_by_center[center_name]
         bdays = birthdays_by_center.get(
             center_name, pd.DataFrame(columns=birthdays_df.columns)
