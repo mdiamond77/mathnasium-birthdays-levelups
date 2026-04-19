@@ -23,7 +23,7 @@ CC_RECIPIENT = "matt.diamond@mathnasium.com"
 # Enrollment Report columns (verified against real Radius export)
 ENROLLMENT_COL_FIRST   = "Student First Name"
 ENROLLMENT_COL_LAST    = "Student Last Name"
-ENROLLMENT_COL_MONTHS  = "StudentLengthof Stay"
+ENROLLMENT_COL_MONTHS  = "Student Length of Stay"
 ENROLLMENT_COL_CENTER  = "Center"
 
 # Birthday Report columns (verified against real Radius export)
