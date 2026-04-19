@@ -86,6 +86,9 @@ def process(enrollment_path, birthdays_path, month: int) -> dict:
     enrollment_df = pd.read_excel(enrollment_path)
     birthdays_df = pd.read_excel(birthdays_path)
 
+    print("Enrollment columns:", list(enrollment_df.columns))
+    print("Birthday columns:", list(birthdays_df.columns))
+
     if enrollment_df.empty:
         raise ValueError("Enrollment report is empty — check Radius filters and re-run.")
     if birthdays_df.empty:
